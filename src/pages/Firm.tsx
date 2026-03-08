@@ -166,7 +166,7 @@ export default function Firm() {
             transition={{ duration: 0.7, ease }}
             className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 w-full max-w-4xl mx-auto"
           >
-            {PHILOSOPHY.map((item, i) => (
+            {PHILOSOPHY.map((item) => (
               <div key={item.title} className="flex flex-col">
                 <h3 className="font-heading text-xl sm:text-2xl font-bold text-navy tracking-tight mb-3">
                   {item.title}
