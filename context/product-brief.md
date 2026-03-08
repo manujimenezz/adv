@@ -262,10 +262,6 @@ Colors:
 - Dark grey
 - Optional deep navy
 
-Typography recommendation:
-
-Headlines: Serif elegant  
-Body: Clean sans serif
 
 Examples:
 

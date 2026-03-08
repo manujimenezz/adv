@@ -1,73 +1,117 @@
 import { Link } from 'react-router-dom'
-import { ArrowUpRight } from 'lucide-react'
+import { Mail, MapPin, Linkedin } from 'lucide-react'
+import { FooterBackgroundGradient, TextHoverEffect } from '@/components/ui/hover-footer'
 
 const footerLinks = [
-  { to: '/firm', label: 'Firm' },
-  { to: '/advisory', label: 'Advisory' },
-  { to: '/approach', label: 'Approach' },
-  { to: '/contact', label: 'Contact' },
+  { title: 'Navigation', links: [
+    { label: 'Firm', to: '/firm' },
+    { label: 'Advisory', to: '/advisory' },
+    { label: 'Approach', to: '/approach' },
+    { label: 'Contact', to: '/contact' },
+  ]},
+  { title: 'Helpful links', links: [
+    { label: 'Contact', to: '/contact' },
+  ]},
+]
+
+const contactInfo = [
+  {
+    icon: <Mail size={20} className="text-[#3ca2fa]" />,
+    text: 'contact@advincapital.com',
+    href: 'mailto:contact@advincapital.com',
+  },
+  {
+    icon: <MapPin size={20} className="text-[#3ca2fa]" />,
+    text: 'www.advincapital.com',
+  },
+]
+
+const socialLinks = [
+  { icon: <Linkedin size={22} />, label: 'LinkedIn', href: '#' },
 ]
 
 export default function Footer() {
   return (
-    <footer className="bg-navy text-white">
-      <div className="max-w-7xl mx-auto px-6 sm:px-10 pt-20 pb-10">
-        {/* Top section */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 pb-16 border-b border-white/10">
-          {/* Brand */}
-          <div className="md:col-span-5">
-            <div className="flex items-center gap-2.5 mb-5">
-              <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center">
-                <span className="text-white font-bold text-sm">A</span>
-              </div>
-              <span className="text-[15px] font-bold tracking-tight">Advin Capital</span>
+    <footer className="bg-navy relative h-fit overflow-hidden m-8 w-full">
+      <FooterBackgroundGradient />
+      <div className="lg:flex hidden h-[30rem] -mt-52 -mb-36">
+        <TextHoverEffect text="Advin" className="z-50" />
+      </div>
+      <div className="w-full flex flex-col items-center justify-center gap-0 px-6 sm:px-10 lg:px-14 py-24 sm:py-32 z-40 relative h-80 -mt-[29px] mb-[25px]">
+        <div className="w-full max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-20 md:gap-16 lg:gap-24 pb-16">
+            {/* Description */}
+            <div className="flex flex-col">
+              <p className="text-base sm:text-lg text-white/70 leading-relaxed">
+                Independent Investment Advisory focused on structured real asset transactions across domestic and international markets.
+              </p>
             </div>
-            <p className="text-white/40 text-sm leading-relaxed max-w-sm">
-              Independent Investment Advisory focused on structured real asset transactions across domestic and international markets.
-            </p>
+
+            {footerLinks.map((section) => (
+              <div key={section.title}>
+                <h4 className="text-white text-xl font-semibold mb-8">
+                  {section.title}
+                </h4>
+                <ul className="space-y-6">
+                  {section.links.map((link) => (
+                    <li key={link.label}>
+                      <Link
+                        to={link.to}
+                        className="block text-base text-white/70 hover:text-[#3ca2fa] transition-colors my-3"
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+
+            <div>
+              <h4 className="text-white text-xl font-semibold mb-8">
+                Contact
+              </h4>
+              <ul className="space-y-6">
+                {contactInfo.map((item, i) => (
+                  <li key={i} className="flex items-center space-x-3">
+                    {item.icon}
+                    {item.href ? (
+                      <a
+                        href={item.href}
+                        className="block text-base text-white/70 hover:text-[#3ca2fa] transition-colors my-3"
+                      >
+                        {item.text}
+                      </a>
+                    ) : (
+                      <span className="block text-base text-white/70 hover:text-[#3ca2fa] transition-colors cursor-default my-3">
+                        {item.text}
+                      </span>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
 
-          {/* Navigation */}
-          <div className="md:col-span-3">
-            <h4 className="text-[11px] font-semibold uppercase tracking-[0.15em] text-white/30 mb-5">
-              Navigation
-            </h4>
-            <div className="flex flex-col gap-3">
-              {footerLinks.map((link) => (
-                <Link
-                  key={link.to}
-                  to={link.to}
-                  className="text-sm text-white/50 hover:text-white transition-colors duration-200 w-fit"
+          <hr className="border-t border-white/10 my-10" />
+
+          <div className="flex flex-col md:flex-row justify-between items-center text-base space-y-4 md:space-y-0">
+            <div className="flex space-x-6 text-white/50">
+              {socialLinks.map(({ icon, label, href }) => (
+                <a
+                  key={label}
+                  href={href}
+                  aria-label={label}
+                  className="hover:text-[#3ca2fa] transition-colors"
                 >
-                  {link.label}
-                </Link>
+                  {icon}
+                </a>
               ))}
             </div>
-          </div>
-
-          {/* Contact */}
-          <div className="md:col-span-4">
-            <h4 className="text-[11px] font-semibold uppercase tracking-[0.15em] text-white/30 mb-5">
-              Contact
-            </h4>
-            <a
-              href="mailto:contact@advincapital.com"
-              className="group inline-flex items-center gap-1.5 text-sm text-white/50 hover:text-white transition-colors duration-200"
-            >
-              contact@advincapital.com
-              <ArrowUpRight size={13} className="opacity-0 group-hover:opacity-100 transition-opacity" />
-            </a>
-            <p className="text-sm text-white/30 mt-3">
-              www.advincapital.com
+            <p className="text-center md:text-left text-white/50">
+              &copy; {new Date().getFullYear()} Advin Capital. All rights reserved.
             </p>
           </div>
-        </div>
-
-        {/* Bottom bar */}
-        <div className="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-[12px] text-white/25">
-            &copy; {new Date().getFullYear()} Advin Capital. All rights reserved.
-          </p>
         </div>
       </div>
     </footer>

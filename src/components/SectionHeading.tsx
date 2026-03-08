@@ -11,13 +11,14 @@ interface SectionHeadingProps {
 export default function SectionHeading({ label, title, description, align = 'center', light = false }: SectionHeadingProps) {
   const alignment = align === 'center' ? 'text-center items-center' : 'text-left items-start'
 
-  const maxWidth = align === 'left' ? 'max-w-2xl' : 'max-w-3xl'
+  const maxWidth = align === 'left' ? 'max-w-2xl' : 'max-w-[900px]'
   return (
     <motion.div
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-80px' }}
       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      style={align === 'center' ? { paddingTop: 28, paddingBottom: 28, paddingLeft: 17, paddingRight: 17 } : undefined}
       className={`flex flex-col ${alignment} ${maxWidth} ${align === 'center' ? 'mx-auto' : ''} mb-20 sm:mb-24`}
     >
       {label && (
@@ -25,7 +26,7 @@ export default function SectionHeading({ label, title, description, align = 'cen
           {label}
         </span>
       )}
-      <h2 className={`font-heading text-3xl sm:text-4xl lg:text-[2.75rem] font-bold tracking-tight leading-[1.15] ${light ? 'text-white' : 'text-navy'}`}>
+      <h2 className={`font-heading text-3xl sm:text-4xl lg:text-[2.75rem] font-bold tracking-tight leading-[1.15] w-[849px] max-w-full ${light ? 'text-white' : 'text-navy'}`}>
         {title}
       </h2>
       {description && (
