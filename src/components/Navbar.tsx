@@ -1,30 +1,65 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
+import LogoIcon from '../../logo/icono.svg'
 
 const navLinks = [
   { to: '/', label: 'Home' },
   { to: '/firm', label: 'Firm' },
   { to: '/advisory', label: 'Advisory' },
   { to: '/approach', label: 'Approach' },
+  { to: '/contact', label: 'Contact' },
 ]
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
+  const [hidden, setHidden] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const lastScrollY = useRef(0)
   const location = useLocation()
   const isHome = location.pathname === '/'
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40)
-    window.addEventListener('scroll', onScroll)
-    return () => window.removeEventListener('scroll', onScroll)
+    const HIDE_THRESHOLD = 160
+    const handleScroll = () => {
+      const currentY = window.scrollY
+
+      setScrolled(currentY > 40)
+
+      // Always show navbar near la parte superior
+      if (currentY < 10) {
+        setHidden(false)
+      } else {
+        const delta = currentY - lastScrollY.current
+
+        // Solo empezamos a ocultar después de cierto desplazamiento
+        if (currentY > HIDE_THRESHOLD) {
+          // Pequeño umbral para evitar temblores
+          if (delta > 4) {
+            // Scroll hacia abajo → ocultar
+            setHidden(true)
+          } else if (delta < -4) {
+            // Scroll hacia arriba → mostrar
+            setHidden(false)
+          }
+        } else {
+          // Antes del umbral, la navbar siempre visible
+          setHidden(false)
+        }
+      }
+
+      lastScrollY.current = currentY
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   useEffect(() => {
     setMobileOpen(false)
     window.scrollTo(0, 0)
+    setHidden(false)
   }, [location])
 
   const isDark = isHome && !scrolled
@@ -32,9 +67,13 @@ export default function Navbar() {
   return (
     <>
       <motion.header
-        initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        initial="visible"
+        animate={hidden ? 'hidden' : 'visible'}
+        variants={{
+          visible: { y: 0, opacity: 1 },
+          hidden: { y: -80, opacity: 0 },
+        }}
+        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         style={{ paddingTop: '24px' }}
         className="fixed top-0 left-0 right-0 z-50 flex justify-center px-6 sm:px-10"
       >
@@ -54,15 +93,17 @@ export default function Navbar() {
         >
           {/* Logo */}
           <Link to="/" className="group shrink-0" style={{ marginLeft: '20px' }}>
-             <span className={`text-lg font-bold tracking-tight transition-colors duration-500 group-hover:opacity-80 ${isDark ? 'text-white' : 'text-navy'}`}>
-               Advin Capital
-             </span>
+            <img
+              src={LogoIcon}
+              alt="Advin Capital"
+              className="h-7 sm:h-8 w-auto transition-opacity duration-500 group-hover:opacity-80"
+            />
           </Link>
 
           {/* Desktop links */}
           <div
             className={`hidden md:flex items-center rounded-2xl border ${isDark ? 'bg-white/[0.06] border-white/[0.08]' : 'bg-black/[0.03] border-black/[0.04]'}`}
-            style={{ padding: '6px', gap: '4px', marginRight: '-450px' }}
+            style={{ padding: '6px', gap: '4px', marginRight: '-404px' }}
           >
             {navLinks.map((link) => {
               const isActive = location.pathname === link.to
@@ -117,7 +158,7 @@ export default function Navbar() {
               className="mx-5 mt-28 bg-white/90 backdrop-blur-2xl rounded-2xl border border-black/[0.06] shadow-2xl p-3 overflow-hidden"
               onClick={(e) => e.stopPropagation()}
             >
-              {[...navLinks, { to: '/contact', label: 'Contact' }].map((link, i) => (
+              {navLinks.map((link, i) => (
                 <motion.div
                   key={link.to}
                   initial={{ opacity: 0, x: -10 }}

@@ -12,6 +12,7 @@ export default function SectionHeading({ label, title, description, align = 'cen
   const alignment = align === 'center' ? 'text-center items-center' : 'text-left items-start'
 
   const maxWidth = align === 'left' ? 'max-w-2xl' : 'max-w-[900px]'
+  const marginBottom = align === 'center' ? 'mb-20 sm:mb-24' : 'mb-12 sm:mb-16'
   return (
     <motion.div
       initial={{ opacity: 0, y: 24 }}
@@ -19,7 +20,7 @@ export default function SectionHeading({ label, title, description, align = 'cen
       viewport={{ once: true, margin: '-80px' }}
       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
       style={align === 'center' ? { paddingTop: 28, paddingBottom: 28, paddingLeft: 17, paddingRight: 17 } : undefined}
-      className={`flex flex-col ${alignment} ${maxWidth} ${align === 'center' ? 'mx-auto' : ''} mb-20 sm:mb-24`}
+      className={`flex flex-col ${alignment} ${maxWidth} ${align === 'center' ? 'mx-auto' : ''} ${marginBottom}`}
     >
       {label && (
         <span className={`inline-block text-[11px] font-semibold uppercase tracking-[0.2em] mb-4 ${light ? 'text-gold-light' : 'text-gold'}`}>

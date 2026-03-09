@@ -21,27 +21,27 @@ const APPROACH_CTA_IMAGE = APPROACH_HERO_IMAGE
 const STEPS = [
   {
     step: 1,
-    title: 'Mandate & Strategy',
+    title: 'Análisis y estrategia',
     description:
-      'Each engagement begins with a detailed analysis of the asset, the ownership objectives and the optimal transaction strategy. This stage defines investor positioning, process design and strategic alignment before any market engagement occurs.',
+      'Cada operación comienza con un análisis detallado del activo, de los objetivos de la propiedad y de la estrategia de transacción más adecuada. En esta fase se define el posicionamiento de la inversión, el diseño del proceso y el enfoque estratégico antes de iniciar cualquier interacción con el mercado.',
   },
   {
     step: 2,
-    title: 'Investment Preparation',
+    title: 'Preparación de la inversión',
     description:
-      'Advin Capital prepares the transaction through the development of a clear investment narrative, institutional documentation and structured information materials. This preparation ensures investors receive a clear, compelling and well-structured opportunity.',
+      'Advin Capital prepara la operación mediante el desarrollo de una narrativa de inversión clara, documentación estructurada y materiales informativos para inversores. Esta fase permite presentar la oportunidad de forma clara, coherente y bien estructurada.',
   },
   {
     step: 3,
-    title: 'Controlled Market Process',
+    title: 'Proceso de mercado',
     description:
-      'Transactions are presented to a carefully selected group of qualified investors under a confidential and controlled process. The firm manages investor engagement, information flow and timeline coordination throughout the process.',
+      'La operación se presenta a un grupo seleccionado de inversores potenciales a través de un proceso cuidadosamente gestionado. La firma coordina el contacto con inversores, el flujo de información y el calendario del proceso.',
   },
   {
     step: 4,
-    title: 'Structured Execution',
+    title: 'Ejecución de la operación',
     description:
-      'Advin Capital supports negotiation, capital structuring and coordination with legal and financial advisors until transaction completion. The objective is to deliver clarity, efficiency and disciplined execution throughout the closing process.',
+      'Advin Capital acompaña la estructuración de capital y la coordinación con asesores legales y financieros hasta la finalización de la operación, asegurando claridad, eficiencia y disciplina en todo el proceso.',
   },
 ]
 
@@ -70,7 +70,7 @@ export default function Approach() {
             className="inline-flex items-center rounded-full bg-white/[0.08] backdrop-blur-md border border-white/[0.12] mb-10"
           >
             <span className="text-[12px] font-medium text-white/70 tracking-widest uppercase">
-              Methodology
+              Metodología
             </span>
           </motion.div>
 
@@ -81,7 +81,7 @@ export default function Approach() {
             variants={fadeUp}
             className="font-heading text-5xl sm:text-6xl lg:text-7xl xl:text-[5.5rem] font-bold text-white tracking-tight leading-[1.08]"
           >
-            Our Approach
+            Nuestro enfoque
           </motion.h1>
 
           <motion.p
@@ -91,7 +91,7 @@ export default function Approach() {
             variants={fadeUp}
             className="mt-8 text-lg sm:text-xl text-white/55 leading-[1.7] max-w-xl"
           >
-            Advin Capital follows a structured methodology designed to ensure disciplined transaction execution and strategic investor engagement.
+            Cada operación se desarrolla mediante una metodología estructurada que permite una ejecución disciplinada y un proceso de inversión cuidadosamente gestionado.
           </motion.p>
 
           <motion.div
@@ -106,7 +106,7 @@ export default function Approach() {
               style={{ padding: '16px 44px', fontSize: '16px' }}
               className="inline-flex items-center justify-center gap-3 bg-white text-navy font-semibold rounded-2xl hover:bg-cream active:scale-[0.97] transition-all duration-200 shadow-[0_4px_24px_rgba(0,0,0,0.15)] group"
             >
-              Contact the Firm
+              Contactar con la firma
               <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
             </Link>
           </motion.div>
@@ -128,7 +128,7 @@ export default function Approach() {
                 className="flex flex-col"
               >
                 <span className="text-xs font-semibold uppercase tracking-[0.2em] text-gold mb-4">
-                  Step {item.step}
+                  {String(item.step).padStart(2, '0')}
                 </span>
                 <h3 className="font-heading text-2xl sm:text-3xl font-bold tracking-tight leading-[1.2] text-navy">
                   {item.title}
@@ -161,8 +161,8 @@ export default function Approach() {
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 lg:px-14 text-center flex flex-col items-center">
           <SectionHeading
-            title="For confidential inquiries"
-            description="Please contact the firm."
+            title="Para consultas confidenciales"
+            description="Por favor, contacte con la firma."
             align="center"
             light
           />
@@ -171,7 +171,7 @@ export default function Approach() {
             style={{ padding: '16px 44px', fontSize: '16px' }}
             className="inline-flex items-center justify-center gap-3 mt-8 bg-white text-navy font-semibold rounded-2xl hover:bg-cream active:scale-[0.97] transition-all duration-200 shadow-[0_4px_24px_rgba(0,0,0,0.15)] group"
           >
-            Contact
+            Contactar con la firma
             <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>

@@ -23,12 +23,12 @@ const IMAGE_STRATEGIC = 'https://images.unsplash.com/photo-1497366216548-3752607
 const SERVICES = [
   {
     label: 'Hospitality',
-    title: 'Hospitality Investment Advisory',
+    title: 'Asesoramiento estratégico en inversión hotelera',
     bullets: [
       'Operational hotels',
       'Development opportunities',
-      'Value-add repositioning strategies',
-      'Portfolio transactions',
+      'Value-add repositioning',
+      'Operaciones estratégicas',
     ],
     closing:
       'Advin Capital works closely with owners and investors to structure transactions that maximise value and ensure efficient execution.',
@@ -36,15 +36,15 @@ const SERVICES = [
   },
   {
     label: 'Capital',
-    title: 'Capital Structuring',
+    title: 'Estructuración de capital',
     bullets: [
-      'Equity structuring',
-      'Joint venture advisory',
-      'Capital raising strategies',
+      'Estructuración de equity',
+      'Diseño de investment structures',
+      'Definición de capital strategies',
       'Investor alignment',
     ],
     closing:
-      'The firm supports both asset owners seeking capital partners and investors seeking structured opportunities.',
+      'Advin Capital apoya tanto a propietarios de activos que buscan socios de capital como a inversores que buscan oportunidades estructuradas.',
     image: IMAGE_CAPITAL,
   },
   {
@@ -57,7 +57,7 @@ const SERVICES = [
       'Investment thesis development',
     ],
     closing:
-      'This advisory ensures assets are presented to the market with clarity, strategic positioning and institutional readiness.',
+      'Advin Capital asesora en la preparación estratégica de las operaciones y en el posicionamiento de los activos para su presentación al mercado.',
     image: IMAGE_STRATEGIC,
   },
 ] as const
@@ -98,7 +98,7 @@ export default function Advisory() {
             variants={fadeUp}
             className="font-heading text-5xl sm:text-6xl lg:text-7xl xl:text-[5.5rem] font-bold text-white tracking-tight leading-[1.08]"
           >
-            Our advisory
+            Asesoramiento estratégico
           </motion.h1>
 
           <motion.p
@@ -108,7 +108,8 @@ export default function Advisory() {
             variants={fadeUp}
             className="mt-8 text-lg sm:text-xl text-white/55 leading-[1.7] max-w-xl"
           >
-            Strategic advisory across hospitality and real asset transactions, supporting clients throughout the investment lifecycle.
+            Asesoramiento estratégico en operaciones del sector hospitality y en transacciones de inversión, acompañando a
+            nuestros clientes en todas las fases del ciclo de inversión.
           </motion.p>
 
           <motion.div
@@ -137,9 +138,9 @@ export default function Advisory() {
       >
         <div className="w-full max-w-7xl px-6 sm:px-10 lg:px-14 flex flex-col items-center text-center justify-center">
           <SectionHeading
-            label="Services"
-            title="Our advisory services"
-            description="Advin Capital provides strategic advisory across hospitality and real asset transactions, supporting clients throughout the investment lifecycle."
+            label="Servicios"
+            title="Asesoramiento estratégico"
+            description="Asesoramiento estratégico en la estructuración y ejecución de operaciones de inversión."
             align="center"
           />
         </div>
@@ -166,7 +167,12 @@ export default function Advisory() {
                   viewport={{ once: true, margin: '-80px' }}
                   transition={{ duration: 0.7, ease }}
                   className="max-w-3xl"
-                  style={{ padding: '40px 0' }}
+                  style={{
+                    padding: '40px 0',
+                    ...(service.label === 'Hospitality' ? { paddingLeft: 70 } : {}),
+                    ...(service.label === 'Capital' ? { marginLeft: 70 } : {}),
+                    ...(service.label === 'Strategic' ? { marginLeft: 70 } : {}),
+                  }}
                 >
                   <span className="inline-block text-xs font-semibold uppercase tracking-[0.2em] text-gold mb-6">
                     {service.label}
@@ -231,8 +237,8 @@ export default function Advisory() {
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 lg:px-14 text-center flex flex-col items-center">
           <SectionHeading
-            title="For confidential inquiries"
-            description="Please contact the firm."
+            title="Contactar con Advin Capital."
+            description="Para consultas confidenciales, contacte con Advin Capital."
             align="center"
             light
           />
@@ -241,7 +247,7 @@ export default function Advisory() {
             style={{ padding: '16px 44px', fontSize: '16px' }}
             className="inline-flex items-center justify-center gap-3 mt-8 bg-white text-navy font-semibold rounded-2xl hover:bg-cream active:scale-[0.97] transition-all duration-200 shadow-[0_4px_24px_rgba(0,0,0,0.15)] group"
           >
-            Contact
+            Contactar
             <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>

@@ -28,7 +28,7 @@ export default function CapabilityCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
       transition={{ duration: 0.6, delay: index * 0.1, ease }}
-      whileHover={{ y: -4 }}
+      whileHover={{ y: -2 }}
       className="group h-full"
     >
       <Link to={to} className="block h-full rounded-2xl shadow-[0_8px_40px_rgba(0,0,0,0.12)] focus:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2">
@@ -37,7 +37,7 @@ export default function CapabilityCard({
             <img
               src={image}
               alt={imageAlt}
-              className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
             />
             {/* Dark gradient overlay for text readability */}
             <div

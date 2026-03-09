@@ -4,6 +4,7 @@ import { ArrowRight } from 'lucide-react'
 import PageTransition from '../components/PageTransition'
 import SectionHeading from '../components/SectionHeading'
 import CapabilityCard from '../components/CapabilityCard'
+import LogoText from '../../logo/LOGOADVIN.svg'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -19,19 +20,22 @@ const ease = [0.22, 1, 0.36, 1] as const
 const CAPABILITIES = [
   {
     title: 'Hospitality',
-    description: 'Advisory and capital solutions for hospitality and leisure assets. From operational due diligence to structuring and execution.',
+    description:
+      'Asesoramiento estratégico y soluciones de capital para activos hoteleros y de ocio. Acompañamos a propietarios e inversores desde el análisis operativo del activo hasta la estructuración y ejecución de la operación.',
     image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&h=500&fit=crop',
     to: '/advisory',
   },
   {
     title: 'Capital',
-    description: 'Capital structuring, placement and selective co-investment across real assets. Tailored to institutional and family office mandates.',
+    description:
+      'Estructuración de capital para operaciones de inversión. Definimos soluciones de capital adaptadas a cada operación.',
     image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=500&fit=crop',
     to: '/advisory',
   },
   {
-    title: 'Strategic',
-    description: 'Strategic advisory for acquisitions, disposals and portfolio optimisation. Independent perspective with execution focus.',
+    title: 'Estrategia',
+    description:
+      'Asesoramiento estratégico para adquisiciones, desinversiones y reposicionamiento de portfolios, alineando la estructura de capital con los objetivos de cada inversor.',
     image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=500&fit=crop',
     to: '/advisory',
   },
@@ -40,7 +44,6 @@ const CAPABILITIES = [
 export default function Home() {
   return (
     <PageTransition>
-      {/* Hero (unchanged) */}
       <section className="relative min-h-[100svh] flex items-center overflow-hidden">
         <div className="absolute inset-0">
           <img
@@ -62,28 +65,29 @@ export default function Home() {
             className="inline-flex items-center rounded-full bg-white/[0.08] backdrop-blur-md border border-white/[0.12] mb-10"
           >
             <span className="text-[12px] font-medium text-white/70 tracking-widest uppercase">
-              Independent Investment Advisory
+              Asesoramiento estratégico y estructuración de capital
             </span>
           </motion.div>
 
-          <motion.h1
+          <motion.img
             custom={1}
             initial="hidden"
             animate="visible"
             variants={fadeUp}
-            className="font-heading text-5xl sm:text-6xl lg:text-7xl xl:text-[5.5rem] font-bold text-white tracking-tight leading-[1.08]"
-          >
-            Advin Capital
-          </motion.h1>
+            src={LogoText}
+            alt="Advin Capital"
+            className="w-[280px] sm:w-[380px] lg:w-[520px] xl:w-[580px] h-auto mx-auto drop-shadow-[0_18px_45px_rgba(0,0,0,0.55)]"
+          />
 
           <motion.p
             custom={2}
             initial="hidden"
             animate="visible"
             variants={fadeUp}
-            className="mt-8 text-lg sm:text-xl text-white/55 leading-[1.7] max-w-xl"
+            style={{ marginTop: '-52px' }}
+            className="text-lg sm:text-xl text-white/55 leading-[1.7] max-w-xl"
           >
-            Focused on structured real asset transactions. Strategic advisory, capital structuring and selective co-investment.
+            Firma independiente especializada en asesoramiento estratégico y estructuración de capital.
           </motion.p>
 
           <motion.div
@@ -94,20 +98,26 @@ export default function Home() {
             style={{ marginTop: '30px' }}
             className="flex flex-col sm:flex-row gap-6"
           >
-            <Link
-              to="/contact"
+            <button
+              type="button"
+              onClick={() => {
+                const section = document.getElementById('intro')
+                if (section) {
+                  section.scrollIntoView({ behavior: 'smooth' })
+                }
+              }}
               style={{ padding: '16px 44px', fontSize: '16px' }}
               className="inline-flex items-center justify-center gap-3 bg-white text-navy font-semibold rounded-2xl hover:bg-cream active:scale-[0.97] transition-all duration-200 shadow-[0_4px_24px_rgba(0,0,0,0.15)] group"
             >
-              Contact the Firm
+              Por qué Advin
               <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-            </Link>
+            </button>
             <Link
               to="/advisory"
               style={{ padding: '16px 44px', fontSize: '16px' }}
               className="inline-flex items-center justify-center gap-3 bg-white/[0.08] backdrop-blur-md border border-white/[0.15] text-white font-semibold rounded-2xl hover:bg-white/[0.14] active:scale-[0.97] transition-all duration-200"
             >
-              Our Advisory
+              Asesoramiento
             </Link>
           </motion.div>
         </div>
@@ -128,13 +138,12 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* Intro / Value */}
       <section id="intro" className="w-full bg-warm-white min-h-[420px] flex items-center justify-center gap-[100px] py-20 sm:py-28 mt-32 sm:mt-40 lg:mt-52 mb-40 sm:mb-48 lg:mb-56">
         <div className="w-full max-w-7xl px-6 sm:px-10 lg:px-14 flex flex-col items-center text-center justify-center">
           <SectionHeading
-            label="Why Advin"
-            title="Independent advice, execution focus"
-            description="We advise on structured real asset transactions across domestic and international markets—without conflicts of interest."
+            label="Por qué Advin"
+            title="Independencia. Criterio. Ejecución."
+            description="Asesoramos a propietarios e inversores en la estructuración y ejecución de operaciones de inversión en mercados nacionales e internacionales, con total independencia y alineación de intereses."
             align="center"
           />
           <motion.div
@@ -142,19 +151,31 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.7, ease }}
-            className="flex flex-wrap justify-center gap-x-12 gap-y-10 sm:gap-16 md:gap-24"
+            className="mt-10 flex flex-wrap justify-center gap-x-12 gap-y-8 sm:gap-16 md:gap-24"
           >
             <div className="text-center">
-              <span className="font-heading text-4xl sm:text-5xl font-bold text-gold tabular-nums">15+</span>
-              <p className="mt-1 text-sm font-medium text-slate-mid uppercase tracking-wider">Years experience</p>
+              <p className="text-xs sm:text-sm font-medium text-slate-mid uppercase tracking-[0.2em] mb-2">
+                Especialización
+              </p>
+              <p className="text-sm sm:text-base font-semibold text-navy">
+                Hoteles y activos
+              </p>
+              <p className="text-sm sm:text-base font-semibold text-navy">inmobiliarios</p>
             </div>
             <div className="text-center">
-              <span className="font-heading text-4xl sm:text-5xl font-bold text-navy tabular-nums">50+</span>
-              <p className="mt-1 text-sm font-medium text-slate-mid uppercase tracking-wider">Transactions advised</p>
+              <p className="text-xs sm:text-sm font-medium text-slate-mid uppercase tracking-[0.2em] mb-2">
+                Años de experiencia
+              </p>
+              <span className="font-heading text-4xl sm:text-5xl font-bold text-gold tabular-nums block">
+                15+
+              </span>
             </div>
             <div className="text-center">
-              <span className="font-heading text-4xl sm:text-5xl font-bold text-navy tabular-nums">€2B+</span>
-              <p className="mt-1 text-sm font-medium text-slate-mid uppercase tracking-wider">Volume structured</p>
+              <p className="text-xs sm:text-sm font-medium text-slate-mid uppercase tracking-[0.2em] mb-2">
+                Mercados
+              </p>
+              <p className="text-sm sm:text-base font-semibold text-navy">Europa y</p>
+              <p className="text-sm sm:text-base font-semibold text-navy">mercados internacionales</p>
             </div>
           </motion.div>
         </div>
@@ -164,12 +185,12 @@ export default function Home() {
       <section id="capabilities" className="w-full bg-cream min-h-[720px] py-24 sm:py-32 flex justify-center items-center mb-24 sm:mb-32 lg:mb-40">
         <div className="w-full max-w-7xl px-6 sm:px-10 lg:px-14 flex flex-col items-center justify-center gap-12 sm:gap-16">
           <SectionHeading
-            label="What we do"
-            title="Advisory and capital solutions"
-            description="Hospitality, capital structuring and strategic advisory—delivered with a single team and one standard."
+            label="Qué hacemos"
+            title="Asesoramiento estratégico y estructuración de capital"
+            description="Especializados en el sector hospitality, asesoramos en la estructuración y ejecución de operaciones de inversión con un único equipo y bajo un mismo estándar de trabajo."
             align="center"
           />
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 w-full" style={{ marginBottom: 40, marginTop: -40 }}>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 w-full" style={{ marginBottom: 40 }}>
             {CAPABILITIES.map((item, i) => (
               <CapabilityCard
                 key={item.title}
@@ -184,7 +205,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* The Firm */}
       <section id="the-firm" className="w-full bg-warm-white py-20 sm:py-28 mb-24 sm:mb-32 lg:mb-40">
         <div className="flex flex-col lg:flex-row lg:items-center">
           {/* Texto: padding izquierdo claro */}
@@ -198,19 +218,19 @@ export default function Home() {
               style={{ padding: '40px 111px' }}
             >
               <span className="inline-block text-xs font-semibold uppercase tracking-[0.2em] text-gold mb-6">
-                The Firm
+                Advin Capital
               </span>
               <h2 className="font-heading text-4xl sm:text-5xl lg:text-[3.25rem] font-bold tracking-tight leading-[1.12] text-navy">
-                Boutique advisory, institutional standard
+                Advin Capital
               </h2>
               <p className="mt-[23px] mb-[23px] text-slate-mid text-lg sm:text-xl leading-[34px]">
-                A dedicated team with deep experience in hospitality and real assets. We combine sector expertise with rigorous execution and alignment to our clients' objectives.
+                Advin Capital es una firma independiente especializada en asesoramiento estratégico y estructuración de capital. Nuestro equipo aporta una amplia experiencia en el sector hospitality y en operaciones de inversión, combinando conocimiento sectorial con rigor en la estructuración y ejecución de cada operación.
               </p>
               <Link
                 to="/firm"
                 className="inline-flex items-center gap-2 mt-10 text-gold font-semibold hover:text-gold-light transition-colors duration-200 group text-base"
               >
-                About the firm
+                Sobre Advin Capital
                 <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
               </Link>
             </motion.div>
@@ -234,7 +254,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Market Coverage */}
       <section id="market-coverage" className="relative min-h-[480px] sm:min-h-[560px] flex items-center justify-center overflow-hidden py-20 sm:py-28">
         <div className="absolute inset-0">
           <motion.img
@@ -250,9 +269,9 @@ export default function Home() {
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 lg:px-14 text-center">
           <SectionHeading
-            label="Coverage"
-            title="Domestic and international markets"
-            description="We advise on transactions across Europe and selected international markets, with on-the-ground experience and a consistent approach."
+            label="Cobertura"
+            title="Europa y mercados internacionales"
+            description="Asesoramos en operaciones en distintos mercados europeos y en jurisdicciones internacionales seleccionadas, combinando experiencia local con un enfoque riguroso y consistente."
             align="center"
             light
           />
