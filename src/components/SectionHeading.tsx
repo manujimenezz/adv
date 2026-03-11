@@ -27,7 +27,11 @@ export default function SectionHeading({ label, title, description, align = 'cen
           {label}
         </span>
       )}
-      <h2 className={`font-heading text-3xl sm:text-4xl lg:text-[2.75rem] font-bold tracking-tight leading-[1.15] w-[849px] max-w-full ${light ? 'text-white' : 'text-navy'}`}>
+      <h2
+        className={`font-heading text-3xl sm:text-4xl lg:text-[2.75rem] font-bold tracking-tight leading-[1.15] w-full max-w-[44rem] md:w-[849px] md:max-w-full ${
+          light ? 'text-white' : 'text-navy'
+        }`}
+      >
         {title}
       </h2>
       {description && (

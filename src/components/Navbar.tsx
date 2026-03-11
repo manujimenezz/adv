@@ -62,6 +62,22 @@ export default function Navbar() {
     setHidden(false)
   }, [location])
 
+  useEffect(() => {
+    if (typeof document === 'undefined') return
+
+    const previousOverflow = document.body.style.overflow
+
+    if (mobileOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = previousOverflow || ''
+    }
+
+    return () => {
+      document.body.style.overflow = previousOverflow || ''
+    }
+  }, [mobileOpen])
+
   const isDark = isHome && !scrolled
 
   return (
@@ -102,8 +118,10 @@ export default function Navbar() {
 
           {/* Desktop links */}
           <div
-            className={`hidden md:flex items-center rounded-2xl border ${isDark ? 'bg-white/[0.06] border-white/[0.08]' : 'bg-black/[0.03] border-black/[0.04]'}`}
-            style={{ padding: '6px', gap: '4px', marginRight: '-404px' }}
+            className={`hidden md:flex ml-auto md:mr-4 lg:mr-6 items-center rounded-2xl border ${
+              isDark ? 'bg-white/[0.06] border-white/[0.08]' : 'bg-black/[0.03] border-black/[0.04]'
+            }`}
+            style={{ padding: '6px', gap: '4px', marginRight: '13px' }}
           >
             {navLinks.map((link) => {
               const isActive = location.pathname === link.to
@@ -127,7 +145,7 @@ export default function Navbar() {
           </div>
 
           {/* Mobile toggle */}
-          <div className="flex items-center">
+          <div className="flex items-center md:hidden">
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
               className={`md:hidden p-2.5 rounded-xl transition-colors ${isDark ? 'hover:bg-white/10 text-white' : 'hover:bg-black/5 text-navy'}`}
@@ -147,15 +165,25 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-40 bg-black/20 backdrop-blur-sm md:hidden"
+            className="fixed inset-0 z-[60] bg-navy md:hidden flex flex-col justify-center min-h-[100svh] relative"
             onClick={() => setMobileOpen(false)}
           >
+            <button
+              onClick={(e) => {
+                e.stopPropagation()
+                setMobileOpen(false)
+              }}
+              className="absolute top-6 right-6 p-2 rounded-full text-white hover:bg-white/10"
+              aria-label="Close menu"
+            >
+              <X size={22} />
+            </button>
             <motion.div
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.25, ease: 'easeOut' }}
-              className="mx-5 mt-28 bg-white/90 backdrop-blur-2xl rounded-2xl border border-black/[0.06] shadow-2xl p-3 overflow-hidden"
+              className="flex-1 flex flex-col items-center justify-center px-10 w-full h-full"
               onClick={(e) => e.stopPropagation()}
             >
               {navLinks.map((link, i) => (
@@ -168,10 +196,10 @@ export default function Navbar() {
                   <Link
                     to={link.to}
                     className={`
-                      block px-5 py-4 rounded-xl text-[15px] font-medium transition-all duration-150
+                      block text-center text-2xl font-semibold tracking-tight py-2 transition-colors duration-150
                       ${location.pathname === link.to
-                        ? 'bg-black/[0.04] text-navy'
-                        : 'text-slate-mid hover:bg-black/[0.02] hover:text-navy'
+                        ? 'text-white'
+                        : 'text-white/70 hover:text-white'
                       }
                     `}
                   >

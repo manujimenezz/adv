@@ -84,8 +84,7 @@ export default function Home() {
             initial="hidden"
             animate="visible"
             variants={fadeUp}
-            style={{ marginTop: '-52px' }}
-            className="text-lg sm:text-xl text-white/55 leading-[1.7] max-w-xl"
+            className="mt-6 sm:mt-[-52px] text-lg sm:text-xl text-white/55 leading-[1.7] max-w-xl"
           >
             Firma independiente especializada en asesoramiento estratégico y estructuración de capital.
           </motion.p>
@@ -214,8 +213,7 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: '-80px' }}
               transition={{ duration: 0.7, ease }}
-              className="max-w-3xl"
-              style={{ padding: '40px 111px' }}
+              className="max-w-3xl px-6 py-10 md:px-[111px] md:py-[40px]"
             >
               <span className="inline-block text-xs font-semibold uppercase tracking-[0.2em] text-gold mb-6">
                 Advin Capital

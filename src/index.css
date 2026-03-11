@@ -86,3 +86,14 @@ body {
   );
   opacity: 0.9;
 }
+
+/* ==========================================
+   MOBILE-ONLY STYLES (max-width: 767px)
+   Estos estilos SOLO se aplican en movil.
+   No tocar los estilos fuera de este bloque.
+   ========================================== */
+@media (max-width: 767px) {
+  html {
+    overflow-x: hidden;
+  }
+}
