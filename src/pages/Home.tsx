@@ -147,7 +147,10 @@ export default function Home() {
             className="mt-10 flex flex-wrap justify-center gap-x-12 gap-y-8 sm:gap-16 md:gap-24"
           >
             <div className="text-center">
-              <p className="text-xs sm:text-sm font-semibold text-navy uppercase tracking-[0.2em] mb-2">
+              <p
+                className="text-sm sm:text-base font-bold leading-6 text-navy uppercase tracking-[1px]"
+                style={{ marginTop: 12, marginBottom: 12 }}
+              >
                 Especialización
               </p>
               <p className="text-xs sm:text-sm text-slate-mid uppercase tracking-[0.2em]">
@@ -156,7 +159,10 @@ export default function Home() {
               <p className="text-xs sm:text-sm text-slate-mid uppercase tracking-[0.2em]">inmobiliarios</p>
             </div>
             <div className="text-center">
-              <p className="text-xs sm:text-sm font-semibold text-navy uppercase tracking-[0.2em] mb-2">
+              <p
+                className="text-sm sm:text-base font-bold leading-6 text-navy uppercase tracking-[1px]"
+                style={{ marginTop: 12, marginBottom: 12 }}
+              >
                 Años de experiencia
               </p>
               <span className="font-heading text-4xl sm:text-5xl font-bold text-gold tabular-nums block">
@@ -164,7 +170,10 @@ export default function Home() {
               </span>
             </div>
             <div className="text-center">
-              <p className="text-xs sm:text-sm font-semibold text-navy uppercase tracking-[0.2em] mb-2">
+              <p
+                className="text-sm sm:text-base font-bold leading-6 text-navy uppercase tracking-[1px]"
+                style={{ marginTop: 12, marginBottom: 12 }}
+              >
                 Mercados
               </p>
               <p className="text-xs sm:text-sm text-slate-mid uppercase tracking-[0.2em]">Europa y mercados</p>
@@ -209,6 +218,7 @@ export default function Home() {
               viewport={{ once: true, margin: '-80px' }}
               transition={{ duration: 0.7, ease }}
               className="max-w-3xl px-6 py-10 md:px-[111px] md:py-[40px]"
+              style={{ marginLeft: 28, paddingTop: 7 }}
             >
               <span className="inline-block text-sm sm:text-[15px] font-semibold uppercase tracking-[0.2em] text-gold mb-6">
                 Advin Capital
